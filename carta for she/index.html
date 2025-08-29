@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta para ti 💌</title>
+  <style>
+    :root{
+      --rosa:#ff5e78; --rosa-osc:#e94c67; --fondo1:#ffdde1; --fondo2:#ee9ca7; --texto:#4a0033;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--fondo1),var(--fondo2));
+      font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      color:var(--texto);
+      padding:24px;
+    }
+    .wrap{ text-align:center; max-width:900px; width:100%; }
+    .btn{
+      padding:14px 22px; border:0; border-radius:12px; color:#fff; background:var(--rosa);
+      font-size:16px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.15);
+      transition:.2s transform, .2s background;
+    }
+    .btn:hover{ background:var(--rosa-osc); transform:translateY(-1px) }
+    .carta{
+      display:none; margin:26px auto 0; background:#fff; padding:28px 22px;
+      border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.18); text-align:left;
+      line-height:1.65; animation:aparecer .6s ease forwards;
+    }
+    .carta h2{ margin:0 0 12px; text-align:center }
+    .carta p{ margin:14px 0 }
+    @keyframes aparecer{
+      from{ opacity:0; transform:translateY(12px) scale(.98) }
+      to{ opacity:1; transform:translateY(0) scale(1) }
+    }
+    .hint{ font-size:13px; opacity:.8; margin-top:10px }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <button class="btn" id="abrirBtn">💌 Abrir la carta</button>
+
+    <div id="carta" class="carta">
+      <h2>Para ti ❤️</h2>
+      <p>Hoy sentí la necesidad de escribirte porque a veces lo que siento por ti es tan grande que no cabe en mis palabras. Quiero que sepas que te amo, y que ese amor no es un simple sentimiento pasajero, sino una fuerza que me acompaña en todo momento. Desde que llegaste a mi vida, descubrí que amar no es solo decirlo, es demostrarlo en cada detalle, en cada pensamiento, en cada instante que compartimos.</p>
+      <p>Amarte es despertar cada día con una razón para sonreír. Es sentir que la vida tiene más colores, más música y más sentido cuando estás cerca. Tú eres mi paz cuando el mundo se vuelve ruidoso, mi inspiración cuando me siento sin fuerzas, y mi alegría cuando parece que todo pesa demasiado.</p>
+      <p>Quiero que sepas que mi amor por ti no depende de las circunstancias ni de los días buenos o malos. Es un amor que crece, que aprende, que se fortalece con cada momento vivido. No es perfecto, porque yo no lo soy, pero es sincero, profundo y eterno. Prometo cuidarlo siempre, porque sé lo valioso que es tenerte en mi vida.</p>
+      <p>Gracias, amor, por ser como eres: por tu risa que ilumina mis días, por tus palabras que me llenan de calma, por tu manera única de hacerme sentir amado y comprendido. No sabes cuánto significa para mí tenerte, cuánto valoro cada segundo a tu lado.</p>
+      <p>Quiero un futuro contigo, lleno de sueños cumplidos, de momentos felices y de la certeza de que, pase lo que pase, siempre nos tendremos el uno al otro. Porque amarte es mi destino, mi elección y mi mayor felicidad.</p>
+
+      
+      <div style="text-align:center; margin-top:12px">
+        <button class="btn" id="playBtn" style="background:#8e44ad">▶️ Reproducir música</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Música: asegúrate de tener este archivo junto al index.html -->
+  <audio id="musica" src="cancion.mp3.mp3" loop></audio>
+
+  <script>
+  const btnAbrir = document.getElementById('abrirBtn');
+  const carta = document.getElementById('carta');
+  const audio = document.getElementById('musica');
+
+  btnAbrir.addEventListener('click', () => {
+    carta.style.display = 'block';
+    btnAbrir.style.display = 'none';
+    // reproducir música tras click
+    audio.play().catch(err => {
+      console.error("Error reproduciendo música:", err);
+    });
+    carta.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  </script>
+</body>
+</html>
+
